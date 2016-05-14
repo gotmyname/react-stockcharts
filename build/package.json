@@ -1,0 +1,48 @@
+{
+  "name": "react-stockcharts",
+  "version": "0.4.0",
+  "description": "Highly customizable stock charts with ReactJS and d3",
+  "main": "index.js",
+  "jsnext:main": "index.js",
+  "author": {
+    "name": "Ragu Ramaswamy"
+  },
+  "homepage": "http://rrag.github.io/react-stockcharts/",
+  "license": "MIT",
+  "dependencies": {
+    "d3": "^3.5.14",
+    "lodash.flattendeep": "^4.1.0",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
+    "save-svg-as-png": "1.0.2"
+  },
+  "peerDependencies": {
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6"
+  },
+  "keywords": [
+    "react",
+    "stockcharts",
+    "finance",
+    "financechart",
+    "charts",
+    "ReactJS",
+    "d3",
+    "react-component",
+    "react-charts",
+    "chart-components"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rrag/react-stockcharts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rrag/react-stockcharts/issues"
+  },
+  "maintainers": [
+    {
+      "name": "rrag",
+      "email": "ragunath.ramaswamy@gmail.com"
+    }
+  ]
+}
