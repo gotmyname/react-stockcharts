@@ -21,13 +21,13 @@ class SingleMAToolTip extends Component {
 		var translate = "translate(" + this.props.origin[0] + ", " + this.props.origin[1] + ")";
 		return (
 			<g transform={translate}>
-				<line x1={0} y1={2} x2={0} y2={28} stroke={this.props.color} strokeWidth="4px"/>
-				<ToolTipText x={5} y={11}
+				<line x1={0} y1={2} x2={0} y2={12} stroke={this.props.color} strokeWidth="2px"/>
+				<ToolTipText x={3} y={11}
 					fontFamily={this.props.fontFamily} fontSize={this.props.fontSize}>
 					<ToolTipTSpanLabel>{this.props.displayName}</ToolTipTSpanLabel>
-					<tspan x="5" dy="15">{this.props.value}</tspan>
+					<tspan x="38">{this.props.value}</tspan>
 				</ToolTipText>
-				<rect x={0} y={0} width={55} height={30}
+				<rect x={0} y={0} width={75} height={11}
 					onClick={this.handleClick}
 					fill="none" stroke="none" />
 			</g>
@@ -110,7 +110,7 @@ MovingAverageTooltip.defaultProps = {
 	className: "react-stockcharts-moving-average-tooltip",
 	displayFormat: d3.format(".2f"),
 	origin: [0, 10],
-	width: 65,
+	width: 85,
 };
 
 export default MovingAverageTooltip;

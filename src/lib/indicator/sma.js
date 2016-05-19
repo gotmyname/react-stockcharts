@@ -30,7 +30,7 @@ export default function() {
 		return newData;
 	};
 
-	base.tooltipLabel(() => `${ALGORITHM_TYPE}(${underlyingAlgorithm.windowSize()})`);
+	base.tooltipLabel(() => `MA${underlyingAlgorithm.windowSize()}`);
 
 	d3.rebind(indicator, base, "id", "accessor", "stroke", "fill", "echo", "type", "tooltipLabel");
 	d3.rebind(indicator, underlyingAlgorithm, "windowSize", "source", "undefinedValue", "skipInitial");
