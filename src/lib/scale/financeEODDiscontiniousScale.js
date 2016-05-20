@@ -32,10 +32,10 @@ export default function financeEODScale(indexAccessor = d => d.idx, dateAccessor
 	var timeScaleStepsBisector = d3.bisector(function(d) { return d.step; }).left;
 	var bisectByIndex = d3.bisector(function(d) { return indexAccessor(d); }).left;
 	var tickFormat = [
-		[d3.time.format("%Y"), function(d) { return d.startOfYear; }],
-		[d3.time.format("%b %Y"), function(d) { return d.startOfQuarter; }],
-		[d3.time.format("%b"), function(d) { return d.startOfMonth; }],
-		[d3.time.format("%d %b"), function(d) { return d.startOfWeek; }],
+		[d3.time.format("%Y%m"), function(d) { return d.startOfYear; }],
+		[d3.time.format("%Y%m"), function(d) { return d.startOfQuarter; }],
+		[d3.time.format("%m"), function(d) { return d.startOfMonth; }],
+		[d3.time.format("%m%d"), function(d) { return d.startOfWeek; }],
 		[d3.time.format("%a %d "), function(/* d */) { return true; }]
 	];
 	function formater(d) {
