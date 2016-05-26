@@ -7,7 +7,9 @@ import { isDefined, isNotDefined } from "../utils";
 export default function financeEODScale(indexAccessor = d => d.idx, dateAccessor = d => d.date, data = [0, 1], backingLinearScale = d3.scale.linear()) {
 
 	var timeScaleSteps = [
-		{ step: 864e5, f: function(d) { return isDefined(dateAccessor(d)) && true; } },  // 1-day
+		{ step: 864e5, f: function(d) {
+      return isDefined(dateAccessor(d)) && dateAccessor(d).getMinutes() == 0;
+    } },  // 1-day
 		{ step: 1728e5, f: function(d, i) { return isDefined(dateAccessor(d)) && (i % 2 === 0); } }, // 2-day
 		{ step: 8380e5, f: function(d, i, arr) {
 			if (d.startOfMonth) return true;
@@ -35,8 +37,9 @@ export default function financeEODScale(indexAccessor = d => d.idx, dateAccessor
 		[d3.time.format("%Y%m"), function(d) { return d.startOfYear; }],
 		[d3.time.format("%Y%m"), function(d) { return d.startOfQuarter; }],
 		[d3.time.format("%m"), function(d) { return d.startOfMonth; }],
-		[d3.time.format("%m%d"), function(d) { return d.startOfWeek; }],
-		[d3.time.format("%a %d "), function(/* d */) { return true; }]
+		[d3.time.format("%m-%d"), function(d) { return d.startOfWeek; }],
+		[d3.time.format("%m-%d"), function(d) { return d.date.getHours() == 0 && d.date.getMinutes() == 0; }],
+		[d3.time.format("%H:%M"), function(/* d */) { return true; }]
 	];
 	function formater(d) {
 		var i = 0, format = tickFormat[i];
