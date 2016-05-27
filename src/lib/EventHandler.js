@@ -232,7 +232,8 @@ class EventHandler extends Component {
 			data: isDefined(showingInterval) ? fullData[showingInterval] : fullData,
 			chartConfig: this.state.chartConfig,
 			currentCharts: this.state.currentCharts,
-			currentItem: this.state.currentItem,
+			currentItem: (this.state.currentItem && this.state.currentItem.date) ? this.state.currentItem : 
+                   (this.state.plotData ? this.state.plotData[this.state.plotData.length - 1] : null),
 			show: this.state.show,
 			mouseXY: this.state.mouseXY,
 			interval: this.state.showingInterval,

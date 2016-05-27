@@ -9,7 +9,10 @@ import ToolTipTSpanLabel from "./ToolTipTSpanLabel";
 
 class OHLCTooltip extends Component {
 	render() {
-		var { forChart, onClick, xDisplayFormat, fontFamily, fontSize, accessor, volumeFormat, ohlcFormat } = this.props;
+		var {
+			forChart, onClick, xDisplayFormat, fontFamily, fontSize, accessor, volumeFormat, ohlcFormat,
+			closeOnly, labelDate, labelO, labelH, labelL, labelC, labelVol
+		} = this.props;
 
 		var displayDate, open, high, low, close, volume;
 
@@ -36,18 +39,35 @@ class OHLCTooltip extends Component {
 		var [x, y] = origin(width, height);
 		var [ox, oy] = config.origin;
 
-		return (
-			<g transform={`translate(${ ox + x }, ${ oy + y })`} onClick={onClick}>
+    var tooltipText;
+    if (this.props.closeOnly) {
+      tooltipText = (
 				<ToolTipText x={0} y={0}
 					fontFamily={fontFamily} fontSize={fontSize}>
-					<ToolTipTSpanLabel key="label" x={0} dy="5">Date: </ToolTipTSpanLabel>
+					<ToolTipTSpanLabel key="label" x={0} dy="5">{labelDate}: </ToolTipTSpanLabel>
 					<tspan key="value">{displayDate}</tspan>
-					<ToolTipTSpanLabel key="label_O"> O: </ToolTipTSpanLabel><tspan key="value_O">{open}</tspan>
-					<ToolTipTSpanLabel key="label_H"> H: </ToolTipTSpanLabel><tspan key="value_H">{high}</tspan>
-					<ToolTipTSpanLabel key="label_L"> L: </ToolTipTSpanLabel><tspan key="value_L">{low}</tspan>
-					<ToolTipTSpanLabel key="label_C"> C: </ToolTipTSpanLabel><tspan key="value_C">{close}</tspan>
-					<ToolTipTSpanLabel key="label_Vol"> Vol: </ToolTipTSpanLabel><tspan key="value_Vol">{volume}</tspan>
+					<ToolTipTSpanLabel key="label_C"> {labelC}: </ToolTipTSpanLabel><tspan key="value_C">{close}</tspan>
+					<ToolTipTSpanLabel key="label_Vol"> {labelVol}: </ToolTipTSpanLabel><tspan key="value_Vol">{volume}</tspan>
 				</ToolTipText>
+      );
+    } else {
+      tooltipText = (
+				<ToolTipText x={0} y={0}
+					fontFamily={fontFamily} fontSize={fontSize}>
+					<ToolTipTSpanLabel key="label" x={0} dy="5">{labelDate}: </ToolTipTSpanLabel>
+					<tspan key="value">{displayDate}</tspan>
+					<ToolTipTSpanLabel key="label_O"> {labelO}: </ToolTipTSpanLabel><tspan key="value_O">{open}</tspan>
+					<ToolTipTSpanLabel key="label_H"> {labelH}: </ToolTipTSpanLabel><tspan key="value_H">{high}</tspan>
+					<ToolTipTSpanLabel key="label_L"> {labelL}: </ToolTipTSpanLabel><tspan key="value_L">{low}</tspan>
+					<ToolTipTSpanLabel key="label_C"> {labelC}: </ToolTipTSpanLabel><tspan key="value_C">{close}</tspan>
+					<ToolTipTSpanLabel key="label_Vol"> {labelVol}: </ToolTipTSpanLabel><tspan key="value_Vol">{volume}</tspan>
+				</ToolTipText>
+      );
+    }
+    
+		return (
+			<g transform={`translate(${ ox + x }, ${ oy + y })`} onClick={onClick}>
+        {tooltipText}
 			</g>
 		);
 	}
@@ -73,6 +93,13 @@ OHLCTooltip.propTypes = {
 	fontSize: PropTypes.number,
 	onClick: PropTypes.func,
 	volumeFormat: PropTypes.func,
+	closeOnly: PropTypes.bool,
+	labelDate: PropTypes.string,
+	labelO: PropTypes.string,
+	labelH: PropTypes.string,
+	labelL: PropTypes.string,
+	labelC: PropTypes.string,
+	labelVol: PropTypes.string
 };
 
 OHLCTooltip.defaultProps = {
@@ -81,6 +108,13 @@ OHLCTooltip.defaultProps = {
 	volumeFormat: d3.format(".4s"),
 	ohlcFormat: d3.format(".2f"),
 	origin: [0, 0],
+	closeOnly: false,
+	labelDate: "Date",
+	labelO: "O",
+	labelH: "H",
+	labelL: "L",
+	labelC: "C",
+	labelVol: "Vol"
 };
 
 export default OHLCTooltip;
