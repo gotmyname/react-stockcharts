@@ -40,7 +40,8 @@ class MACDTooltip extends Component {
 					<ToolTipTSpanLabel> Signal (</ToolTipTSpanLabel>
 						<tspan fill={calculator.stroke().signal}>{calculator.signal()}</tspan>
 						<ToolTipTSpanLabel>): </ToolTipTSpanLabel><tspan fill={calculator.stroke().signal}>{signal}</tspan>
-					<ToolTipTSpanLabel> Divergence: </ToolTipTSpanLabel><tspan fill={calculator.fill().divergence}>{divergence}</tspan>
+					<ToolTipTSpanLabel> Divergence: </ToolTipTSpanLabel>
+          <tspan fill={calculator.fill().divergence ? calculator.fill().divergence : calculator.fill()()}>{divergence}</tspan>
 				</ToolTipText>
 			</g>
 		);

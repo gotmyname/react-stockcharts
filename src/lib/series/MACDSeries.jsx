@@ -56,7 +56,7 @@ class MACDSeries extends Component {
 				<BarSeries
 					baseAt={this.yAccessorForDivergenceBase}
 					className="macd-divergence"
-					stroke={divergenceStroke} fill={fill.divergence} opacity={opacity}
+					stroke={divergenceStroke} fill={fill.divergence ? fill.divergence : fill} opacity={opacity}
 					yAccessor={this.yAccessorForDivergence} />
 				{MACDSeries.getHorizontalLine(this.props)}
 			</g>
