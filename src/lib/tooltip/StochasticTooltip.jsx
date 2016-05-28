@@ -19,7 +19,8 @@ class StochasticTooltip extends Component {
 
 		var K = (stochastic && stochastic.K && displayFormat(stochastic.K)) || "n/a";
 		var D = (stochastic && stochastic.D && displayFormat(stochastic.D)) || "n/a";
-		var label = children || "Stochastic";
+    var J = (stochastic && stochastic.K && stochastic.D && displayFormat(3 * K - 2 * D)) || "n/a"; 
+		var label = children || "KDJ";
 
 		var { origin: originProp } = this.props;
 		var origin = d3.functor(originProp);
@@ -29,14 +30,16 @@ class StochasticTooltip extends Component {
 		return (
 			<g transform={`translate(${ ox + x }, ${ oy + y })`} onClick={onClick}>
 				<ToolTipText x={0} y={0} fontFamily={fontFamily} fontSize={fontSize}>
-					<ToolTipTSpanLabel>{`${ label } %K(`}</ToolTipTSpanLabel>
+					<ToolTipTSpanLabel>{`${ label } K(`}</ToolTipTSpanLabel>
 					<tspan fill={stroke.K}>{`${ calculator.windowSize() }, ${ calculator.kWindowSize() }`}</tspan>
 					<ToolTipTSpanLabel>): </ToolTipTSpanLabel>
 					<tspan fill={stroke.K}>{K}</tspan>
-					<ToolTipTSpanLabel> %D (</ToolTipTSpanLabel>
+					<ToolTipTSpanLabel> D(</ToolTipTSpanLabel>
 					<tspan fill={stroke.D}>{calculator.dWindowSize()}</tspan>
 					<ToolTipTSpanLabel>): </ToolTipTSpanLabel>
 					<tspan fill={stroke.D}>{D}</tspan>
+					<ToolTipTSpanLabel> J: </ToolTipTSpanLabel>
+					<tspan fill={stroke.J}>{J}</tspan>
 				</ToolTipText>
 			</g>
 		);

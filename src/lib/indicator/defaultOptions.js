@@ -54,6 +54,7 @@ export const FullStochasticOscillator = {
 	stroke: {
 		D: "#17becf",
 		K: "#ff7f0e",
+    J: "#fd4ece"
 	},
 	overSold: 80,
 	middle: 50,

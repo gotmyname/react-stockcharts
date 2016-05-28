@@ -12,6 +12,7 @@ class StochasticSeries extends Component {
 		super(props);
 		this.yAccessorForD = this.yAccessorForD.bind(this);
 		this.yAccessorForK = this.yAccessorForK.bind(this);
+		this.yAccessorForJ = this.yAccessorForJ.bind(this);
 	}
 	yAccessorForD(d) {
 		var { calculator } = this.props;
@@ -22,6 +23,11 @@ class StochasticSeries extends Component {
 		var { calculator } = this.props;
 		var yAccessor = calculator.accessor();
 		return yAccessor(d) && yAccessor(d).K;
+	}
+	yAccessorForJ(d) {
+		var { calculator } = this.props;
+		var yAccessor = calculator.accessor();
+		return yAccessor(d) && (3 * yAccessor(d).K - 2 * yAccessor(d).D);
 	}
 	render() {
 		var { className, calculator, xScale, yScale, xAccessor, plotData, stroke, type } = this.props;
@@ -39,6 +45,12 @@ class StochasticSeries extends Component {
 					xAccessor={xAccessor} yAccessor={this.yAccessorForK}
 					plotData={plotData}
 					stroke={seriesStroke.K} fill="none"
+					type={type} />
+				<Line
+					xScale={xScale} yScale={yScale}
+					xAccessor={xAccessor} yAccessor={this.yAccessorForJ}
+					plotData={plotData}
+					stroke={seriesStroke.J} fill="none"
 					type={type} />
 				{StochasticSeries.getHorizontalLine(this.props, calculator.overSold(), stroke.top)}
 				{StochasticSeries.getHorizontalLine(this.props, calculator.middle(), stroke.middle)}
