@@ -64,13 +64,17 @@ export default function() {
 			.accumulator(values => d3.mean(values));
 
 		var stoAlgorithm = zipper()
-			.combine((K, D) => ({ K, D }));
+			.combine((K, D, J) => ({ K, D, J}));
 
 		var kData = kSmoothed(kWindow(data));
 		var dData = dWindow(kData);
 
 		var newData = stoAlgorithm(kData, dData);
-
+    newData.forEach(function(d) {
+      if (d.K && d.D) {
+        d.J = 3 * d.K - 2 * d.D;
+      }
+    });
 		return newData;
 	};
 

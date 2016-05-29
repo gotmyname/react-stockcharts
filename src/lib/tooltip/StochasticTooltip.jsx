@@ -19,7 +19,7 @@ class StochasticTooltip extends Component {
 
 		var K = (stochastic && stochastic.K && displayFormat(stochastic.K)) || "n/a";
 		var D = (stochastic && stochastic.D && displayFormat(stochastic.D)) || "n/a";
-    var J = (stochastic && stochastic.K && stochastic.D && displayFormat(3 * K - 2 * D)) || "n/a"; 
+    var J = (stochastic && stochastic.J && displayFormat(stochastic.J)) || "n/a"; 
 		var label = children || "KDJ";
 
 		var { origin: originProp } = this.props;

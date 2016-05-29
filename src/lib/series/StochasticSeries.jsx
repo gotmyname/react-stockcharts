@@ -27,7 +27,7 @@ class StochasticSeries extends Component {
 	yAccessorForJ(d) {
 		var { calculator } = this.props;
 		var yAccessor = calculator.accessor();
-		return yAccessor(d) && (3 * yAccessor(d).K - 2 * yAccessor(d).D);
+		return yAccessor(d) && yAccessor(d).J;
 	}
 	render() {
 		var { className, calculator, xScale, yScale, xAccessor, plotData, stroke, type } = this.props;
