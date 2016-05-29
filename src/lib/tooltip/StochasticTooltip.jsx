@@ -64,7 +64,7 @@ StochasticTooltip.propTypes = {
 	onClick: PropTypes.func,
 	calculator: PropTypes.func.isRequired,
 	displayFormat: PropTypes.func.isRequired,
-	children: PropTypes.node.isRequired,
+	children: PropTypes.node,
 };
 
 StochasticTooltip.defaultProps = {
