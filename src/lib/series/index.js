@@ -1,4 +1,5 @@
 import AreaSeries from "./AreaSeries";
+import ATRSeries from "./ATRSeries";
 import ScatterSeries from "./ScatterSeries";
 import CircleMarker from "./CircleMarker";
 import LineSeries from "./LineSeries";
@@ -25,6 +26,7 @@ import StraightLine from "./StraightLine";
 import wrap from "./wrap";
 
 export {
+  ATRSeries,
 	ScatterSeries,
 	CircleMarker,
 	AreaSeries,

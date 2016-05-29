@@ -1,3 +1,4 @@
+import ATRTooltip from "./ATRTooltip";
 import MACDTooltip from "./MACDTooltip";
 import TooltipContainer from "./TooltipContainer";
 import OHLCTooltip from "./OHLCTooltip";
@@ -8,6 +9,7 @@ import RSITooltip from "./RSITooltip";
 import StochasticTooltip from "./StochasticTooltip";
 
 export {
+  ATRTooltip,
 	MACDTooltip,
 	TooltipContainer,
 	OHLCTooltip,
