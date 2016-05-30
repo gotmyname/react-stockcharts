@@ -7,9 +7,10 @@ import PureComponent from "../utils/PureComponent";
 
 class YAxis extends PureComponent {
 	render() {
-		var { axisAt, tickFormat, ticks, percentScale, tickValues } = this.props;
+		var { axisAt, tickFormat, ticks, percentScale, tickValues, domain } = this.props;
 		var { chartConfig } = this.context;
-		var yScale = (percentScale) ? chartConfig.yScale.copy().domain([0, 1]) : chartConfig.yScale;
+    var domain = this.props.domain(chartConfig.yScale.domain(), this.context.plotData);
+		var yScale = (percentScale) ? chartConfig.yScale.copy().domain(domain) : chartConfig.yScale;
 
 		tickValues = tickValues || chartConfig.yTicks;
 
@@ -47,14 +48,19 @@ YAxis.propTypes = {
 	showTicks: PropTypes.bool,
 	showDomain: PropTypes.bool,
 	className: PropTypes.string,
+  domain: PropTypes.func
 };
 YAxis.defaultProps = {
 	showGrid: false,
 	showDomain: false,
 	className: "react-stockcharts-y-axis",
 	ticks: 10,
+  domain: function() {
+    return [0, 1];
+  }
 };
 YAxis.contextTypes = {
+	plotData: PropTypes.array,
 	chartConfig: PropTypes.object.isRequired,
 	xScale: PropTypes.func.isRequired,
 	width: PropTypes.number.isRequired,

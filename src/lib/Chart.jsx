@@ -16,13 +16,14 @@ class Chart extends PureComponent {
 	}
 	getChildContext() {
 		var { id: chartId } = this.props;
+    var plotData = this.context.plotData;
 		var chartConfig = this.context.chartConfig.filter((each) => each.id === chartId)[0];
 
 		var { width, height } = chartConfig;
 		var canvasOriginX = 0.5 + chartConfig.origin[0] + this.context.margin.left;
 		var canvasOriginY = 0.5 + chartConfig.origin[1] + this.context.margin.top;
 
-		return { chartId, chartConfig, canvasOriginX, canvasOriginY, width, height };
+		return { chartId, plotData, chartConfig, canvasOriginX, canvasOriginY, width, height };
 	}
 	render() {
 		var { origin } = this.context.chartConfig.filter((each) => each.id === this.props.id)[0];
@@ -68,6 +69,7 @@ Chart.defaultProps = {
 };
 
 Chart.contextTypes = {
+	plotData: PropTypes.array,
 	width: PropTypes.number.isRequired,
 	height: PropTypes.number.isRequired,
 	chartConfig: PropTypes.array,
@@ -80,6 +82,7 @@ Chart.contextTypes = {
 };
 
 Chart.childContextTypes = {
+	plotData: PropTypes.array,
 	height: PropTypes.number,
 	width: PropTypes.number,
 	chartConfig: PropTypes.object.isRequired,
