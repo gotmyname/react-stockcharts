@@ -550,7 +550,7 @@ class EventHandler extends Component {
 							var { yScale } = eachChart;
 
 							if (each.type === "axis") {
-								each.draw(axesCanvasContext, xScale, yScale);
+								each.draw(axesCanvasContext, xScale, each.yScale ? each.yScale : yScale);
 							} else if (each.type === "currentcoordinate") {
 								each.draw(mouseContext, show, xScale, yScale, currentItem);
 							} else if (each.type !== "interactive") {

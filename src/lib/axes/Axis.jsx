@@ -22,6 +22,7 @@ class Axis extends Component {
 		nextContext.callbackForCanvasDraw({
 			chartId: chartId,
 			type: "axis",
+      yScale: nextProps.percentScale ? nextProps.scale : null,
 			draw: draw,
 		});
 	}
