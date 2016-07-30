@@ -72,7 +72,7 @@ export default function() {
 		var newData = stoAlgorithm(kData, dData);
     newData.forEach(function(d) {
       if (d.K && d.D) {
-        d.J = 3 * d.K - 2 * d.D;
+        d.J = 3 * d.D - 2 * d.K;
       }
     });
 		return newData;
